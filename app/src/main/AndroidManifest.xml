@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ifarm">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.ProductDetails"></activity>
+        <activity
+            android:name=".ui.FormAddField"
+            android:theme="@style/LoginAppTheme" />
+        <activity
+            android:name=".account.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginAppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".field" />
+        <activity android:name=".myFieldsActivity" />
+        <activity android:name=".updateActivity" />
+        <activity android:name=".tipsActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".weatherActivity" />
+        <activity android:name=".statistiquesActivity" />
+        <activity android:name=".menuActivity"  />
+        <activity android:name=".contactUs"  />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/LoginAppTheme">
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="message/rfc822"/>
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".weather.activities.SplashActivity" />
+        <activity
+            android:name=".weather.activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".weather.activities.SettingsActivity"
+            android:theme="@style/AppTheme" />
+
+        <receiver android:name=".weather.widgets.ExtensiveWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/extensive_widget" />
+        </receiver>
+        <receiver android:name=".weather.widgets.TimeWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/time_widget" />
+        </receiver>
+        <receiver android:name=".weather.widgets.SimpleWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/simple_widget" />
+        </receiver>
+
+        <service
+            android:name=".weather.widgets.DashClockWeatherExtension"
+            android:icon="@drawable/ic_cloud_white_24dp"
+            android:label="@string/app_name"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="protocolVersion"
+                android:value="2" />
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
+            <meta-data
+                android:name="settingsActivity"
+                android:value=".ExampleSettingsActivity" />
+        </service>
+
+        <receiver android:name=".weather.AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".weather.activities.MapActivity"
+            android:parentActivityName=".weather.activities.MainActivity"
+            android:theme="@style/AppTheme.NoStatusBar" />
+        <activity
+            android:name=".weather.activities.GraphActivity"
+            android:label="@string/action_graphs"
+            android:parentActivityName=".weather.activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name=".weather.utils.StubContentProvider"
+            android:authorities="com.example.ifarm.weather.authority"
+            android:exported="true" />
+    </application>
+
+</manifest>
